@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:3508px;height:4961px;overflow:hidden;background:#0A100E}
+  #inner{position:relative;width:3508px;height:4961px;transform-origin:top left;
+    font-family:"Microsoft YaHei",sans-serif;color:#E8EDE9;overflow:hidden}
+
+  /* 底：炭黑 + 颗粒 + 暗角 */
+  .paper{position:absolute;inset:0;
+    background:
+      radial-gradient(120% 90% at 30% 10%, #16211E 0%, #0B1311 55%, #070C0B 100%);
+  }
+  .grain{position:absolute;inset:0;opacity:.16;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* 巨大浅色页码，压在背景 */
+  .ghost{position:absolute;right:-60px;top:260px;font-family:"SimSun",serif;
+    font-size:1500px;line-height:.75;color:rgba(232,237,233,.045);letter-spacing:-.06em}
+
+  /* 标题：压在主图上，字距拉开 */
+  .title{position:absolute;left:170px;top:300px;z-index:6}
+  .title .cn{font-family:"SimSun","宋体",serif;font-size:330px;line-height:.9;
+    color:#F4F7F5;letter-spacing:.04em;text-shadow:0 12px 60px rgba(0,0,0,.75)}
+  .title .en{margin-top:26px;font-size:30px;letter-spacing:.55em;color:#8FB3A8}
+  .title .sub{margin-top:40px;font-size:38px;letter-spacing:.12em;color:#A9BDB6}
+
+  /* 主图：出血 + 轻微旋转 + 叠在标题下 */
+  .hero{position:absolute;right:-260px;top:120px;width:2560px;transform:rotate(-2.4deg);z-index:4;
+    box-shadow:0 60px 160px rgba(0,0,0,.7)}
+  .hero img{width:100%;display:block}
+
+  /* 散落小图：各自角度 */
+  .snap{position:absolute;z-index:7;box-shadow:0 30px 80px rgba(0,0,0,.65)}
+  .snap img{width:100%;display:block}
+  .snap .cap{margin-top:14px;font-size:24px;letter-spacing:.16em;color:#9FB5AD}
+
+  .s1{left:180px;top:2180px;width:980px;transform:rotate(1.6deg)}
+  .s2{left:1190px;top:2420px;width:760px;transform:rotate(-2.2deg)}
+  .s3{left:340px;top:3120px;width:820px;transform:rotate(2.8deg)}
+  .s4{left:1230px;top:3260px;width:700px;transform:rotate(-1.4deg)}
+
+  /* 右侧竖排：色板与说明 */
+  .rail{position:absolute;right:170px;bottom:520px;width:600px;z-index:7}
+  .rail h4{font-family:"SimSun",serif;font-size:64px;letter-spacing:.10em;margin-bottom:34px}
+  .sw{display:flex;align-items:center;gap:22px;margin-bottom:26px}
+  .dot{width:86px;height:86px;flex:0 0 auto;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+  .sw .m b{display:block;font-size:28px;letter-spacing:.04em}
+  .sw .m span{font-size:22px;letter-spacing:.12em;color:#7E968F}
+
+  /* 手绘批注 */
+  .note{position:absolute;z-index:8;font-family:"KaiTi","楷体",serif;color:#D9534A;
+    font-size:34px;letter-spacing:.04em;transform:rotate(-4deg)}
+  .n1{left:1300px;top:470px}
+  .n2{left:900px;top:1900px;transform:rotate(3deg)}
+
+  svg.ann{position:absolute;inset:0;z-index:7;pointer-events:none}
+
+
+  /* ---- 叠加层 ---- */
+  .hudpanel{position:absolute;z-index:3;border:2px solid rgba(232,237,233,.20);
+    background:linear-gradient(135deg, rgba(31,75,70,.20), rgba(10,16,14,.05));
+    transform:rotate(-4deg)}
+  .hudpanel::before{content:"";position:absolute;left:-2px;top:-2px;width:120px;height:120px;
+    border-left:4px solid rgba(232,237,233,.55);border-top:4px solid rgba(232,237,233,.55)}
+  .hudpanel::after{content:"";position:absolute;right:-2px;bottom:-2px;width:120px;height:120px;
+    border-right:4px solid rgba(232,237,233,.55);border-bottom:4px solid rgba(232,237,233,.55)}
+  .cluster{position:absolute;z-index:7}
+  .cluster img{display:block;width:100%;box-shadow:0 40px 110px rgba(0,0,0,.8);
+    outline:1px solid rgba(232,237,233,.12);filter:saturate(.94) contrast(1.03)}
+  .c1{position:absolute;left:0;top:0;width:1060px;transform:rotate(-3.2deg);z-index:3}
+  .c2{position:absolute;left:700px;top:210px;width:980px;transform:rotate(2.6deg);z-index:4}
+  .c3{position:absolute;left:300px;top:660px;width:900px;transform:rotate(-1.2deg);z-index:5}
+  .c4{position:absolute;left:1060px;top:900px;width:740px;transform:rotate(4.4deg);z-index:6}
+  .c5{position:absolute;left:-80px;top:1210px;width:780px;transform:rotate(1.6deg);z-index:2}
+  .scanlines{position:absolute;inset:0;z-index:8;pointer-events:none;opacity:.10;
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,.5) 0 1px, transparent 1px 6px)}
+
+  /* 页脚 */
+  .foot{position:absolute;left:170px;bottom:150px;width:2100px;z-index:9}
+  .foot .k{font-size:22px;letter-spacing:.38em;color:#C0392B;margin-bottom:20px}
+  .foot p{font-size:28px;line-height:1.8;color:#A9BDB6}
+  .stamp{position:absolute;right:170px;bottom:170px;z-index:9;width:160px;height:160px;
+    border:6px solid #C0392B;color:#C0392B;display:flex;align-items:center;justify-content:center;
+    font-family:"KaiTi",serif;font-size:40px;line-height:1.05;text-align:center;transform:rotate(-6deg);opacity:.9}
+
+  /* 顶部细标签 */
+  .tag{position:absolute;left:170px;top:150px;font-size:24px;letter-spacing:.46em;color:#7E968F;z-index:9}
+
+.txt{position:absolute;z-index:8}
+.txt h4{font-family:"SimSun",serif;font-size:60px;letter-spacing:.08em;margin-bottom:24px;color:#F0F4F2}
+.txt p{font-size:28px;line-height:1.85;color:#B7C9C2}
+.txt .kv{font-size:26px;line-height:1.95;color:#B7C9C2;margin-bottom:8px}
+.txt .kv b{color:#F0F4F2;font-weight:600;margin-right:14px;letter-spacing:.08em}
+</style></head><body><div id="inner">
+<div class="paper"></div><div class="grain"></div>
+<div class="ghost" style="right:-80px;top:230px;font-size:1700px">01</div>
+<div class="tag">一脉千象 · 名师文化创意表达 · CHARACTER FILE</div>
+
+<div class="hero" style="right:-320px;top:60px;width:2500px;transform:rotate(1.6deg)">
+  <img src="assets/sanview.jpg" alt="">
+</div>
+
+<div class="title" style="top:520px">
+  <div class="cn">晓艳<br>先生</div>
+  <div class="en">PORTRAIT OF A TEACHER</div>
+  <div class="sub">英语名师 · 动漫形象设定</div>
+</div>
+
+<div class="hudpanel" style="left:900px;top:2050px;width:1900px;height:1700px"></div>
+<div class="cluster" style="left:980px;top:2150px;width:1900px;height:1600px">
+  <div class="c1" style="width:820px;left:0;top:0"><img src="assets/hero_char.jpg"></div>
+  <div class="c2" style="width:760px;left:640px;top:180px"><img src="gen/h1.jpg"></div>
+  <div class="c3" style="width:700px;left:180px;top:640px"><img src="assets/biaqing.jpg"></div>
+</div>
+<div class="scanlines"></div>
+
+<div class="txt" style="left:170px;top:2160px;width:700px">
+  <h4>人物设定</h4>
+  <div class="kv"><b>年龄</b>四十岁上下</div>
+  <div class="kv"><b>身份</b>英语教师</div>
+  <div class="kv"><b>性格</b>嘴上不饶人<br>心里最软</div>
+  <div class="kv"><b>标志</b>侧分短发<br>无框眼镜</div>
+  <div class="kv"><b>比例</b>约四头身</div>
+</div>
+
+<div class="rail" style="left:170px;bottom:520px;width:560px">
+  <h4>色彩规范</h4>
+  <div class="sw"><div class="dot" style="background:#1F4B46"></div><div class="m"><b>书院青</b><span>#1F4B46</span></div></div>
+  <div class="sw"><div class="dot" style="background:#2F8071"></div><div class="m"><b>夹克绿</b><span>#2F8071</span></div></div>
+  <div class="sw"><div class="dot" style="background:#F5EFE6"></div><div class="m"><b>纸白</b><span>#F5EFE6</span></div></div>
+  <div class="sw"><div class="dot" style="background:#C0392B"></div><div class="m"><b>朱批红</b><span>#C0392B</span></div></div>
+</div>
+
+<div class="note" style="left:1450px;top:330px;transform:rotate(-4deg)">侧分短发 · 无框眼镜<br>成年眉眼 ↘</div>
+
+<div class="foot" style="left:170px;bottom:150px;width:2200px">
+  <div class="k">设计说明 / DESIGN NOTE</div>
+  <p>以英语教师刘晓艳为人物原型，提炼侧分短发、无框眼镜与成年眉眼，采用约四头身比例与赛璐璐色块塑造动画形象。</p>
+</div>
+<div class="stamp" style="right:170px;bottom:170px">晓艳<br>先生</div>
+</div></body></html>
