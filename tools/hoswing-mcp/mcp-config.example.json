@@ -1,0 +1,13 @@
+{
+  "_说明": "复制成 mcp-config.json 后按自己的路径改；Windows 上 command 要写 node.exe 的绝对路径",
+  "mcpServers": {
+    "hoswing": {
+      "command": "node",
+      "args": ["/absolute/path/to/hoswing-mcp/src/server.mjs"],
+      "env": {
+        "HOSWING_PROJECT_ID": "<你的项目ID>",
+        "HOSWING_CDP_URL": "http://127.0.0.1:9333"
+      }
+    }
+  }
+}

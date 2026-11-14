@@ -2,4 +2,9 @@ node_modules/
 _*.png
 _check*
 __pycache__/
-.DS_Store
+.venv/
+data/
+browser-profile/
+test-output/
+.secrets/
+*.log

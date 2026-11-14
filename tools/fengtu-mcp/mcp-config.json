@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "fengtu": {
+      "type": "stdio",
+      "command": "C:\\Program Files\\Python313\\python.exe",
+      "args": [
+        "I:\\fengtu-mcp\\server.py"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "FENGTU_CDP_URL": "http://127.0.0.1:9333"
+      }
+    }
+  }
+}

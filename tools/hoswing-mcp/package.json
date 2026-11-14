@@ -1,0 +1,10 @@
+{
+  "name": "hoswing-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Hoswing ID-Master MCP adapter with resumable storyboard generation",
+  "scripts": {"start": "node src/server.mjs", "test": "node --test test/*.test.mjs", "smoke": "node test/mcp-smoke.mjs"},
+  "engines": {"node": ">=22"},
+  "dependencies": {"@modelcontextprotocol/sdk": "1.32.2", "playwright-core": "1.65.0", "zod": "4.6.7", "csv-parse": "7.0.3", "exceljs": "4.4.0"}
+}
