@@ -109,3 +109,18 @@ Image.open("out.png").convert("RGB").save("out.jpg", "JPEG", quality=92, dpi=(30
 角色插画与场景图为 AIGC 生成（Hoswing），云肩裁片推演图与文创效果图为项目素材。
 提交前按赛事要求核对第三方素材授权；刘晓艳老师的赛事授权**不包含**第三方摄影、
 视频、品牌、游戏动漫素材。
+
+---
+
+## 十一、配套工具（生成图用）
+
+**Hoswing MCP** — https://github.com/finia-fantastic/hoswing-mcp
+图生图、文生图都能跑，本项目里 `gen/h1~h3`、`gen/g4_detail` 就是它出的。
+推荐配置：`relay-485140b2-284c-45de-b440-c4d767be8d1c` + `tencent-vod:OG:image2.5_flare_medium`，一张约 5 积分。
+⚠️ 它的「参考视频」链路是坏的（三个模型全报 `PROVIDER_SEEDANCE_RELAY`），只能图 + 提示词。
+
+**烽途 MCP** — https://github.com/finia-fantastic/fengtu-mcp
+两段式：先出文字方案（2 积分）→ 满意了再出图（标准 65 / 高级 80）。
+⚠️ **未端到端验证**：未登录过、未提交过付费任务，写接口是按网站前端实现反推的，不是官方 API。
+
+两个都要复用本机的 Edge 调试端口（Hoswing 用 9333，烽途也用 9333，别同时开）。
