@@ -29,6 +29,34 @@
     box-shadow:0 60px 160px rgba(0,0,0,.7)}
   .hero img{width:100%;display:block}
 
+  /* 主图压暗 8%：把米白底压回深色版面 */
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    box-shadow:inset 0 0 220px 70px rgba(10,16,14,.20);mix-blend-mode:multiply}
+
+  /* 头身比标尺：跟主图同角度，量的是三视图本人 */
+  .propor{position:absolute;left:1290px;top:27px;width:320px;height:1568px;
+    z-index:9;color:#C0392B;font-size:42px;letter-spacing:.06em}
+  .propor .pl{position:absolute;left:0;top:0;bottom:0;width:4px;background:rgba(192,57,43,.80)}
+  .propor .tk{position:absolute;left:0;width:62px;height:4px;background:rgba(192,57,43,.80)}
+  .propor .tk i{position:absolute;left:78px;top:-25px;font-style:normal;white-space:nowrap;
+    font-size:40px;color:#C0392B}
+  .propor .tk.end{width:100px}
+  .propor .cap{position:absolute;left:0;top:-58px;font-size:30px;letter-spacing:.28em;color:#A9574C}
+
+  /* 特征识别：从三视图里裁细节，各自带角度 */
+  .feat{position:absolute;left:2620px;top:2100px;width:520px;z-index:7}
+  .feat .card{width:520px;height:520px;background-repeat:no-repeat;
+    box-shadow:0 34px 90px rgba(0,0,0,.7);outline:1px solid rgba(232,237,233,.14)}
+  .feat .lb{margin:22px 0 96px 6px;font-size:26px;letter-spacing:.20em;color:#9FB5AD}
+  .feat .lb b{display:block;font-family:"SimSun",serif;font-size:44px;letter-spacing:.10em;
+    color:#F0F4F2;margin-bottom:6px}
+  .f1 .card{transform:rotate(-3.2deg)}
+  .f2 .card{transform:rotate(2.4deg)}
+  .f3 .card{transform:rotate(-1.6deg)}
+  .feat .hair{background-image:url(assets/sanview.jpg);background-size:2896px auto;background-position:-1140px -20px}
+  .feat .eye{background-image:url(assets/sanview.jpg);background-size:3963px auto;background-position:-547px -328px}
+  .feat .back{background-image:url(assets/sanview.jpg);background-size:2689px auto;background-position:-1894px -501px}
+
   /* 散落小图：各自角度 */
   .snap{position:absolute;z-index:7;box-shadow:0 30px 80px rgba(0,0,0,.65)}
   .snap img{width:100%;display:block}
@@ -96,8 +124,17 @@
 <div class="ghost" style="right:-80px;top:230px;font-size:1700px">01</div>
 <div class="tag">一脉千象 · 名师文化创意表达 · CHARACTER FILE</div>
 
-<div class="hero" style="right:-320px;top:60px;width:2500px;transform:rotate(1.6deg)">
+<div class="hero" style="right:-120px;top:90px;width:2200px;transform:rotate(1.6deg)">
   <img src="assets/sanview.jpg" alt="">
+  <div class="propor">
+    <div class="cap">PROPORTION / 头身比</div>
+    <div class="pl"></div>
+    <div class="tk" style="top:360px"><i>1H</i></div>
+    <div class="tk" style="top:720px"><i>2H</i></div>
+    <div class="tk" style="top:1080px"><i>3H</i></div>
+    <div class="tk" style="top:1440px"><i>4H</i></div>
+    <div class="tk end" style="bottom:0"><i>≈4.4H</i></div>
+  </div>
 </div>
 
 <div class="title" style="top:520px">
@@ -120,7 +157,14 @@
   <div class="kv"><b>身份</b>英语教师</div>
   <div class="kv"><b>性格</b>嘴上不饶人<br>心里最软</div>
   <div class="kv"><b>标志</b>侧分短发<br>无框眼镜</div>
-  <div class="kv"><b>比例</b>约四头身</div>
+  <div class="kv"><b>比例</b>约 4.4 头身</div>
+</div>
+
+<!-- 特征识别：三个记忆点各配一张裁切小图 -->
+<div class="feat">
+  <div class="f1"><div class="card hair"></div><div class="lb"><b>侧分短发</b>PARTED HAIR · 右侧分</div></div>
+  <div class="f2"><div class="card eye"></div><div class="lb"><b>无框眼镜</b>RIMLESS GLASSES</div></div>
+  <div class="f3"><div class="card back"></div><div class="lb"><b>云肩夹克</b>YUNJIAN SEAM ON BACK</div></div>
 </div>
 
 <div class="rail" style="left:170px;bottom:520px;width:560px">
@@ -129,13 +173,14 @@
   <div class="sw"><div class="dot" style="background:#2F8071"></div><div class="m"><b>夹克绿</b><span>#2F8071</span></div></div>
   <div class="sw"><div class="dot" style="background:#F5EFE6"></div><div class="m"><b>纸白</b><span>#F5EFE6</span></div></div>
   <div class="sw"><div class="dot" style="background:#C0392B"></div><div class="m"><b>朱批红</b><span>#C0392B</span></div></div>
+  <div class="sw"><div class="dot" style="background:#2B2B2B"></div><div class="m"><b>墨</b><span>#2B2B2B</span></div></div>
 </div>
 
 <div class="note" style="left:1450px;top:330px;transform:rotate(-4deg)">侧分短发 · 无框眼镜<br>成年眉眼 ↘</div>
 
 <div class="foot" style="left:170px;bottom:150px;width:2200px">
   <div class="k">设计说明 / DESIGN NOTE</div>
-  <p>以英语教师刘晓艳为人物原型，提炼侧分短发、无框眼镜与成年眉眼，采用约四头身比例与赛璐璐色块塑造动画形象。</p>
+  <p>以英语教师刘晓艳为人物原型，提炼侧分短发、无框眼镜与成年眉眼，采用约 4.4 头身比例与赛璐璐色块塑造动画形象。</p>
 </div>
 <div class="stamp" style="right:170px;bottom:170px">晓艳<br>先生</div>
 </div></body></html>

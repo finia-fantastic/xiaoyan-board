@@ -3,7 +3,7 @@
 import sys, pathlib
 from playwright.sync_api import sync_playwright
 
-html = sys.argv[1] if len(sys.argv) > 1 else "board02.html"
+html = sys.argv[1] if len(sys.argv) > 1 else "board02_art.html"
 out  = sys.argv[2] if len(sys.argv) > 2 else "out.jpg"
 W, H = 3508, 4961
 

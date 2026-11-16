@@ -8,3 +8,5 @@ browser-profile/
 test-output/
 .secrets/
 *.log
+# 改版前的原图备份，不入库
+board/交付_原版/

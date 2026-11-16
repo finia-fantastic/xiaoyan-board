@@ -1,0 +1,13 @@
+{
+  "name": "xiaoyan-board-render",
+  "private": true,
+  "version": "0.1.0",
+  "description": "展板渲染：Node 版 fallback（render_board.py 需要 Python 3.8+）",
+  "type": "module",
+  "scripts": {
+    "render": "node render_board.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "1.65.0"
+  }
+}

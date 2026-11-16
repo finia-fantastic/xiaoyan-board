@@ -32,6 +32,50 @@
     box-shadow:0 60px 160px rgba(0,0,0,.7)}
   .hero img{width:100%;display:block}
 
+  /* 主图压暗 8%：把米白稿纸压回深色版面 */
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    box-shadow:inset 0 0 220px 70px rgba(10,16,14,.22);mix-blend-mode:multiply}
+
+  /* 正面 / 背面 对比：核心卖点 */
+  .cmp{position:absolute;left:190px;top:1418px;width:2700px;height:560px;z-index:7}
+  .cmp .card{width:300px;height:450px;background-repeat:no-repeat;display:inline-block;
+    vertical-align:top;box-shadow:0 30px 80px rgba(0,0,0,.7);outline:1px solid rgba(232,237,233,.14)}
+  .cmp .front{background-image:url(assets/sanview.jpg);background-size:1671px auto;
+    background-position:-208px -289px;transform:rotate(-2.2deg)}
+  .cmp .back{background-image:url(assets/sanview.jpg);background-size:1671px auto;
+    background-position:-1177px -289px;transform:rotate(2.4deg)}
+  .cmp .cf{display:inline-block;vertical-align:top;margin:0 0 0 60px;width:300px}
+  .cmp .cf .card{display:block}
+  .cmp .cf .t{margin-top:18px;font-size:24px;letter-spacing:.22em;color:#9FB5AD}
+  .cmp .cf .t b{display:block;font-family:"SimSun",serif;font-size:40px;letter-spacing:.10em;
+    color:#F0F4F2;margin-bottom:6px}
+  .cmp .txtc{display:inline-block;vertical-align:top;width:1420px;margin:60px 0 0 130px}
+  .cmp .txtc h4{font-family:"SimSun",serif;font-size:64px;letter-spacing:.06em;color:#F0F4F2;
+    margin-bottom:26px}
+  .cmp .txtc p{font-size:27px;line-height:1.9;color:#B7C9C2;width:1250px}
+  .cmp .divl{position:absolute;left:760px;top:20px;width:2px;height:470px;
+    background:linear-gradient(180deg,rgba(232,237,233,0),rgba(232,237,233,.28),rgba(232,237,233,0))}
+  .cmp .det{position:absolute;left:2180px;top:0;margin:0;width:340px}
+  .cmp .seam{width:340px;height:340px;background-image:url(gen/g4_detail.jpg);
+    background-size:633px auto;background-position:-155px -186px;transform:rotate(3deg)}
+  .cmp .det .t{margin-top:16px;font-size:22px;letter-spacing:.18em;color:#9FB5AD}
+  .cmp .det .t b{display:block;font-family:"SimSun",serif;font-size:34px;letter-spacing:.10em;
+    color:#F0F4F2;margin-bottom:4px}
+
+  /* 设计草稿：从推演稿里裁两张铅笔稿放大 */
+  .sketch{position:absolute;left:190px;top:4150px;width:2600px;height:420px;z-index:7}
+  .sketch .card{position:absolute;background-repeat:no-repeat;background-color:#F2EDE3;
+    box-shadow:0 26px 70px rgba(0,0,0,.7);outline:1px solid rgba(232,237,233,.12)}
+  .sketch .k1{left:0;top:8px;width:300px;height:400px;transform:rotate(-1.8deg);
+    background-image:url(assets/yunjian.jpg);background-size:1663px auto;background-position:-356px -19px}
+  .sketch .k2{left:340px;top:0;width:320px;height:400px;transform:rotate(1.4deg);
+    background-image:url(assets/yunjian.jpg);background-size:1669px auto;background-position:-659px -19px}
+  .sketch .cap{position:absolute;left:710px;top:74px;width:1100px}
+  .sketch .cap .k{font-size:22px;letter-spacing:.34em;color:#C0392B;margin-bottom:16px}
+  .sketch .cap h4{font-family:"SimSun",serif;font-size:52px;letter-spacing:.08em;color:#F0F4F2;
+    margin-bottom:14px}
+  .sketch .cap p{font-size:25px;line-height:1.85;color:#B7C9C2;width:1000px}
+
   /* 散落小图：各自角度 */
   .snap{position:absolute;z-index:7;box-shadow:0 30px 80px rgba(0,0,0,.65)}
   .snap img{width:100%;display:block}
@@ -106,6 +150,18 @@
     <div class="sub">从传统云肩到当代运动夹克</div>
   </div>
 
+  <!-- 正面 / 背面：整张板的卖点，放在主图与集群之间的空带 -->
+  <div class="cmp">
+    <div class="cf"><div class="card front"></div><div class="t"><b>正面</b>FRONT · 当代运动装</div></div>
+    <div class="cf"><div class="card back"></div><div class="t"><b>背面</b>BACK · 云肩轮廓</div></div>
+    <div class="divl"></div>
+    <div class="det"><div class="card seam"></div><div class="t"><b>后背裁片</b>SEAM · 如意云头</div></div>
+    <div class="txtc">
+      <h4>转身之前 / 转身之后</h4>
+      <p>正面是当代教师每天都在穿的连帽运动装；转身之后，后背裁片才显出如意云头的弧线。同一件衣服，两面两种语言——传统不是贴上去的符号，是被结构藏起来的。</p>
+    </div>
+  </div>
+
   <div class="hudpanel" style="left:640px;top:1960px;width:2450px;height:2160px"></div>
 
   <div class="cluster" style="left:420px;top:2060px;width:2620px;height:2100px">
@@ -126,7 +182,6 @@
   </div>
 
   <div class="note n1">如意云头<br>连续弧线 →</div>
-  <div class="note n2">弧线落到后背<br>转身才看得见</div>
 
   <svg class="ann" viewBox="0 0 3508 4961">
     <path d="M1460 560 C1700 640 1900 720 2140 800" stroke="#D9534A" stroke-width="5" fill="none" stroke-linecap="round" opacity=".85"/>
@@ -134,6 +189,17 @@
     <path d="M1120 2010 C1300 2060 1500 2130 1690 2220" stroke="#D9534A" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
     <path d="M1690 2220 l-48 -10 l12 48 z" fill="#D9534A" opacity=".8"/>
   </svg>
+
+  <!-- 设计草稿：手册必含项，取推演稿里的铅笔上身稿 -->
+  <div class="sketch">
+    <div class="card k1"></div>
+    <div class="card k2"></div>
+    <div class="cap">
+      <div class="k">SKETCH / 设计草稿</div>
+      <h4>从形制到裁片</h4>
+      <p>先在纸样上量出如意云头的形制，再把云头拉直成一条连续弧线，最后落到后背的横向分割位。左边两张是上身稿的推演过程。</p>
+    </div>
+  </div>
 
   <div class="foot">
     <div class="k">设计说明 / DESIGN NOTE</div>
